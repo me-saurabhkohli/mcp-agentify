@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - MCP Agentify</title>
+    <meta name="description" content="Complete API reference for MCP Agentify CLI commands and configuration options">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <style>
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        .command-card {
+            background: var(--background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .command-title {
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .command-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .options-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .options-table th,
+        .options-table td {
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .options-table th {
+            background: var(--background-alt);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .options-table code {
+            background: var(--secondary-color);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">🚀</span>
+                <span class="nav-title">MCP Agentify</span>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./getting-started.html">Getting Started</a>
+                <a href="./api-reference.html">API Reference</a>
+                <a href="https://github.com/me-saurabhkohli/agentify" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <h1>API Reference</h1>
+        <p>Complete reference for all MCP Agentify CLI commands and configuration options.</p>
+
+        <div class="command-card">
+            <h2 class="command-title">agentify analyze</h2>
+            <p class="command-description">Analyzes a project to detect API endpoints and framework type.</p>
+            
+            <h3>Usage</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify analyze [project-path] [options]</code></pre>
+            </div>
+
+            <h3>Options</h3>
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>-p, --project &lt;path&gt;</code></td>
+                        <td>Path to the project directory</td>
+                        <td><code>.</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-t, --type &lt;type&gt;</code></td>
+                        <td>Project type: rest-api, nodejs, openapi</td>
+                        <td><code>auto</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--json</code></td>
+                        <td>Output analysis results as JSON</td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--verbose</code></td>
+                        <td>Enable verbose logging</td>
+                        <td><code>false</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Examples</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Analyze current directory
+agentify analyze
+
+# Analyze specific project with JSON output
+agentify analyze ./my-api --json
+
+# Analyze OpenAPI specification
+agentify analyze ./swagger.json --type openapi</code></pre>
+            </div>
+        </div>
+
+        <div class="command-card">
+            <h2 class="command-title">agentify generate</h2>
+            <p class="command-description">Generates a complete MCP server from analyzed project.</p>
+            
+            <h3>Usage</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify generate [project-path] [options]</code></pre>
+            </div>
+
+            <h3>Options</h3>
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>-p, --project &lt;path&gt;</code></td>
+                        <td>Path to the project directory</td>
+                        <td><code>.</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>-o, --output &lt;path&gt;</code></td>
+                        <td>Output directory for generated MCP server</td>
+                        <td><code>./mcp-server</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--format &lt;format&gt;</code></td>
+                        <td>Output format: typescript, javascript</td>
+                        <td><code>typescript</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--tests</code></td>
+                        <td>Include test files</td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--docs</code></td>
+                        <td>Include documentation</td>
+                        <td><code>true</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--security</code></td>
+                        <td>Enable security features</td>
+                        <td><code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--plugins &lt;list&gt;</code></td>
+                        <td>Comma-separated list of plugins</td>
+                        <td><code>""</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--dry-run</code></td>
+                        <td>Show what would be generated without creating files</td>
+                        <td><code>false</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Examples</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Generate with default settings
+agentify generate
+
+# Generate with custom output and format
+agentify generate --output ./my-mcp-server --format javascript
+
+# Generate with security and plugins
+agentify generate --security --plugins rest-analyzer,template-engine
+
+# Dry run to preview generation
+agentify generate --dry-run</code></pre>
+            </div>
+        </div>
+
+        <div class="command-card">
+            <h2 class="command-title">agentify interactive</h2>
+            <p class="command-description">Launches an interactive setup wizard with guided configuration.</p>
+            
+            <h3>Usage</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify interactive [project-path]</code></pre>
+            </div>
+
+            <h3>Features</h3>
+            <ul>
+                <li>Automatic project detection</li>
+                <li>Step-by-step configuration</li>
+                <li>Smart default suggestions</li>
+                <li>Configuration validation</li>
+                <li>Progress tracking</li>
+            </ul>
+
+            <h3>Example</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Launch interactive setup
+agentify interactive
+
+# Launch for specific project
+agentify interactive ./my-api-project</code></pre>
+            </div>
+        </div>
+
+        <div class="command-card">
+            <h2 class="command-title">agentify init</h2>
+            <p class="command-description">Initializes a configuration file with default settings.</p>
+            
+            <h3>Usage</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify init [options]</code></pre>
+            </div>
+
+            <h3>Options</h3>
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>-o, --output &lt;path&gt;</code></td>
+                        <td>Configuration file output path</td>
+                        <td><code>./agentify.config.json</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--template &lt;name&gt;</code></td>
+                        <td>Configuration template: basic, advanced, enterprise</td>
+                        <td><code>basic</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Example</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Create basic configuration
+agentify init
+
+# Create advanced configuration
+agentify init --template advanced</code></pre>
+            </div>
+        </div>
+
+        <h2>Configuration File</h2>
+        <p>The <code>agentify.config.json</code> file allows you to customize the generation process:</p>
+
+        <div class="code-block">
+            <pre><code class="language-json">{
+  "serverName": "my-mcp-server",
+  "description": "Generated MCP server",
+  "version": "1.0.0",
+  "outputFormat": "typescript",
+  "includeTests": true,
+  "includeDocumentation": true,
+  "excludeEndpoints": [
+    "GET:/health",
+    "POST:/internal/*"
+  ],
+  "transformRules": [
+    {
+      "pattern": "get_user_by_id",
+      "replacement": "getUser",
+      "type": "endpoint"
+    }
+  ],
+  "security": {
+    "enableJWT": true,
+    "enableRBAC": true,
+    "enableValidation": true,
+    "enableAuditLogging": false
+  },
+  "plugins": [
+    "rest-analyzer",
+    "template-engine",
+    "security"
+  ],
+  "customTemplates": "./templates",
+  "environment": {
+    "development": {
+      "outputPath": "./dev-mcp-server"
+    },
+    "production": {
+      "outputPath": "./prod-mcp-server",
+      "security": {
+        "enableJWT": true,
+        "enableRBAC": true,
+        "enableAuditLogging": true
+      }
+    }
+  }
+}</code></pre>
+        </div>
+
+        <h2>Environment Variables</h2>
+        <p>MCP Agentify supports configuration via environment variables:</p>
+
+        <table class="options-table">
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>AGENTIFY_CONFIG</code></td>
+                    <td>Path to configuration file</td>
+                    <td><code>./config/agentify.json</code></td>
+                </tr>
+                <tr>
+                    <td><code>AGENTIFY_OUTPUT</code></td>
+                    <td>Default output directory</td>
+                    <td><code>./generated-servers</code></td>
+                </tr>
+                <tr>
+                    <td><code>AGENTIFY_FORMAT</code></td>
+                    <td>Default output format</td>
+                    <td><code>typescript</code></td>
+                </tr>
+                <tr>
+                    <td><code>AGENTIFY_VERBOSE</code></td>
+                    <td>Enable verbose logging</td>
+                    <td><code>true</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Exit Codes</h2>
+        <p>MCP Agentify uses standard exit codes:</p>
+
+        <table class="options-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>0</code></td>
+                    <td>Success</td>
+                </tr>
+                <tr>
+                    <td><code>1</code></td>
+                    <td>General error</td>
+                </tr>
+                <tr>
+                    <td><code>2</code></td>
+                    <td>Configuration error</td>
+                </tr>
+                <tr>
+                    <td><code>3</code></td>
+                    <td>Analysis failed</td>
+                </tr>
+                <tr>
+                    <td><code>4</code></td>
+                    <td>Generation failed</td>
+                </tr>
+                <tr>
+                    <td><code>5</code></td>
+                    <td>Permission denied</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>

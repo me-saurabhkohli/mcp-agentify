@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - MCP Agentify</title>
+    <meta name="description" content="Quick start guide for MCP Agentify - learn how to generate Model Context Protocol servers from your APIs">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <style>
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        .docs-nav {
+            background: var(--background-alt);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .docs-nav h4 {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        .docs-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .docs-nav li {
+            margin-bottom: 0.5rem;
+        }
+        .docs-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        .docs-nav a:hover {
+            color: var(--primary-color);
+        }
+        .docs-content {
+            line-height: 1.8;
+        }
+        .docs-content h1 {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .docs-content h2 {
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+        .docs-content h3 {
+            margin: 1.5rem 0 0.5rem;
+            color: var(--text-primary);
+        }
+        .docs-content p {
+            margin-bottom: 1rem;
+        }
+        .docs-content ul, .docs-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        .docs-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        .docs-content code {
+            background: var(--secondary-color);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">🚀</span>
+                <span class="nav-title">MCP Agentify</span>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./getting-started.html">Getting Started</a>
+                <a href="./api-reference.html">API Reference</a>
+                <a href="./examples.html">Examples</a>
+                <a href="./vscode-extension.html">VS Code Extension</a>
+                <a href="https://github.com/me-saurabhkohli/agentify" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <div class="docs-nav">
+            <h4>Documentation</h4>
+            <ul>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#basic-usage">Basic Usage</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </div>
+
+        <div class="docs-content">
+            <h1>Getting Started with MCP Agentify</h1>
+            
+            <p>MCP Agentify is a comprehensive platform that transforms your existing REST APIs into Model Context Protocol (MCP) servers. This guide will help you get started quickly with both the CLI tool and VS Code extension.</p>
+
+            <h2 id="installation">Installation</h2>
+
+            <h3>CLI Tool</h3>
+            <p>Install the CLI tool globally using npm:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Install globally
+npm install -g mcp-agentify
+
+# Verify installation
+agentify --version
+
+# Or use with npx (no installation required)
+npx mcp-agentify --help</code></pre>
+            </div>
+
+            <h3>VS Code Extension</h3>
+            <p>Install the VS Code extension for a visual interface:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Install from command line
+code --install-extension saurabhkohli.mcp-agentify
+
+# Or search "MCP Agentify" in VS Code Extensions marketplace</code></pre>
+            </div>
+
+            <h2 id="quick-start">Quick Start</h2>
+
+            <h3>1. Analyze Your Project</h3>
+            <p>First, analyze your existing API project to detect endpoints:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Analyze current directory
+agentify analyze
+
+# Analyze specific project
+agentify analyze ./my-api-project
+
+# Get detailed JSON output
+agentify analyze --json > analysis.json</code></pre>
+            </div>
+
+            <h3>2. Generate MCP Server</h3>
+            <p>Generate a complete MCP server from your API:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Generate with default settings
+agentify generate
+
+# Generate with custom output directory
+agentify generate --output ./my-mcp-server
+
+# Generate with specific options
+agentify generate --format typescript --tests --docs</code></pre>
+            </div>
+
+            <h3>3. Interactive Setup</h3>
+            <p>Use the interactive wizard for guided setup:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Launch interactive setup
+agentify interactive</code></pre>
+            </div>
+
+            <h2 id="basic-usage">Basic Usage</h2>
+
+            <h3>Supported Project Types</h3>
+            <p>MCP Agentify automatically detects and supports:</p>
+            <ul>
+                <li><strong>Node.js:</strong> Express.js, Fastify, Koa, NestJS</li>
+                <li><strong>Python:</strong> Flask, Django REST Framework, FastAPI</li>
+                <li><strong>Java:</strong> Spring Boot, JAX-RS</li>
+                <li><strong>Go:</strong> Gin, Echo, Fiber, Chi</li>
+                <li><strong>OpenAPI:</strong> Swagger 2.x and OpenAPI 3.x specifications</li>
+            </ul>
+
+            <h3>Command Structure</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Basic command structure
+agentify &lt;command&gt; [options]
+
+# Available commands:
+agentify analyze    # Analyze project for API endpoints
+agentify generate   # Generate MCP server
+agentify init       # Initialize configuration file
+agentify interactive # Launch interactive wizard</code></pre>
+            </div>
+
+            <h2 id="configuration">Configuration</h2>
+
+            <h3>Create Configuration File</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Initialize configuration
+agentify init
+
+# This creates agentify.config.json with default settings</code></pre>
+            </div>
+
+            <h3>Configuration Options</h3>
+            <div class="code-block">
+                <pre><code class="language-json">{
+  "serverName": "my-mcp-server",
+  "description": "Generated MCP server",
+  "version": "1.0.0",
+  "outputFormat": "typescript",
+  "includeTests": true,
+  "includeDocumentation": true,
+  "excludeEndpoints": [],
+  "transformRules": [],
+  "security": {
+    "enableJWT": false,
+    "enableRBAC": false,
+    "enableValidation": true
+  }
+}</code></pre>
+            </div>
+
+            <h2 id="examples">Examples</h2>
+
+            <h3>Express.js API</h3>
+            <p>For an Express.js application with the following structure:</p>
+            <div class="code-block">
+                <pre><code class="language-javascript">// app.js
+app.get('/users', getUsersHandler);
+app.post('/users', createUserHandler);
+app.get('/users/:id', getUserByIdHandler);
+app.put('/users/:id', updateUserHandler);
+app.delete('/users/:id', deleteUserHandler);</code></pre>
+            </div>
+
+            <p>Run the analysis and generation:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Analyze the Express app
+agentify analyze ./express-app
+
+# Generate MCP server
+agentify generate ./express-app --output ./user-mcp-server</code></pre>
+            </div>
+
+            <h3>FastAPI Application</h3>
+            <div class="code-block">
+                <pre><code class="language-python"># main.py
+@app.get("/items/")
+async def read_items():
+    return items
+
+@app.post("/items/")
+async def create_item(item: Item):
+    return item</code></pre>
+            </div>
+
+            <div class="code-block">
+                <pre><code class="language-bash"># Generate from FastAPI
+agentify generate ./fastapi-app --format typescript</code></pre>
+            </div>
+
+            <h3>OpenAPI Specification</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Generate from OpenAPI/Swagger file
+agentify generate ./swagger.json --type openapi
+agentify generate ./openapi.yaml --type openapi</code></pre>
+            </div>
+
+            <h2 id="vs-code-usage">VS Code Extension Usage</h2>
+
+            <h3>Getting Started with VS Code Extension</h3>
+            <ol>
+                <li><strong>Open your API project</strong> in VS Code</li>
+                <li><strong>Open Command Palette</strong> (Ctrl+Shift+P / Cmd+Shift+P)</li>
+                <li><strong>Run "MCP Agentify: Analyze Project"</strong></li>
+                <li><strong>View results</strong> in the MCP Agentify sidebar</li>
+                <li><strong>Generate server</strong> using "MCP Agentify: Generate MCP Server"</li>
+            </ol>
+
+            <h3>VS Code Features</h3>
+            <ul>
+                <li><strong>Project Overview:</strong> Visual display of detected framework and endpoints</li>
+                <li><strong>Endpoint Browser:</strong> Interactive list of API endpoints with navigation</li>
+                <li><strong>Code Snippets:</strong> MCP server templates and code completion</li>
+                <li><strong>One-Click Generation:</strong> Generate servers with visual configuration</li>
+            </ul>
+
+            <h2 id="troubleshooting">Troubleshooting</h2>
+
+            <h3>Common Issues</h3>
+
+            <h4>No Endpoints Detected</h4>
+            <ul>
+                <li>Ensure your project uses a supported framework</li>
+                <li>Check that route files are in standard locations</li>
+                <li>Run analysis from the project root directory</li>
+                <li>Use the <code>--verbose</code> flag for detailed logging</li>
+            </ul>
+
+            <h4>Generation Fails</h4>
+            <ul>
+                <li>Check that the output directory is writable</li>
+                <li>Ensure Node.js version 18+ is installed</li>
+                <li>Verify the analysis step completed successfully</li>
+                <li>Check for any dependency conflicts</li>
+            </ul>
+
+            <h4>VS Code Extension Issues</h4>
+            <ul>
+                <li>Ensure the CLI tool is installed: <code>npm install -g mcp-agentify</code></li>
+                <li>Check VS Code settings for correct CLI path</li>
+                <li>Reload VS Code after installing the extension</li>
+                <li>Check the Output panel for error messages</li>
+            </ul>
+
+            <h3>Getting Help</h3>
+            <ul>
+                <li><strong>GitHub Issues:</strong> <a href="https://github.com/me-saurabhkohli/agentify/issues" target="_blank">Report bugs and feature requests</a></li>
+                <li><strong>Documentation:</strong> <a href="./api-reference.html">Complete API reference</a></li>
+                <li><strong>Examples:</strong> <a href="./examples.html">Real-world examples and use cases</a></li>
+                <li><strong>Email Support:</strong> <a href="mailto:me.saurabhkohli@gmail.com">me.saurabhkohli@gmail.com</a></li>
+            </ul>
+
+            <h2>Next Steps</h2>
+            <p>Now that you have MCP Agentify set up, explore these topics:</p>
+            <ul>
+                <li><a href="./api-reference.html">Complete API Reference</a> - All commands and options</li>
+                <li><a href="./security-guide.html">Security Guide</a> - Enterprise security features</li>
+                <li><a href="./plugin-development.html">Plugin Development</a> - Extend functionality with custom plugins</li>
+                <li><a href="./examples.html">Examples</a> - Real-world usage examples</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>

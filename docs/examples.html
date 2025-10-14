@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples - MCP Agentify</title>
+    <meta name="description" content="Real-world examples and use cases for MCP Agentify">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <style>
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        .example-card {
+            background: var(--background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .example-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .example-icon {
+            font-size: 2rem;
+            margin-top: 0.25rem;
+        }
+        .example-meta {
+            flex: 1;
+        }
+        .example-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .example-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        .example-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .stat-badge {
+            background: var(--secondary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-family: var(--font-mono);
+        }
+        .folder-structure {
+            background: var(--background-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+        }
+        .folder-structure .folder {
+            color: var(--primary-color);
+        }
+        .folder-structure .file {
+            color: var(--text-secondary);
+        }
+        .demo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        .demo-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">🚀</span>
+                <span class="nav-title">MCP Agentify</span>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./getting-started.html">Getting Started</a>
+                <a href="./api-reference.html">API Reference</a>
+                <a href="./examples.html">Examples</a>
+                <a href="https://github.com/me-saurabhkohli/agentify" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <h1>Examples</h1>
+        <p>Real-world examples showcasing how MCP Agentify transforms different types of projects into powerful MCP servers.</p>
+
+        <div class="example-card">
+            <div class="example-header">
+                <div class="example-icon">🛒</div>
+                <div class="example-meta">
+                    <h2 class="example-title">E-commerce REST API</h2>
+                    <p class="example-description">A Node.js Express API for an online store with products, orders, and user management.</p>
+                    <div class="example-stats">
+                        <span class="stat-badge">15 endpoints</span>
+                        <span class="stat-badge">Node.js + Express</span>
+                        <span class="stat-badge">JWT Auth</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Original Project Structure</h3>
+            <div class="folder-structure">
+<span class="folder">ecommerce-api/</span>
+├── <span class="folder">src/</span>
+│   ├── <span class="folder">controllers/</span>
+│   │   ├── <span class="file">products.js</span>
+│   │   ├── <span class="file">orders.js</span>
+│   │   └── <span class="file">users.js</span>
+│   ├── <span class="folder">routes/</span>
+│   │   ├── <span class="file">products.js</span>
+│   │   ├── <span class="file">orders.js</span>
+│   │   └── <span class="file">users.js</span>
+│   └── <span class="file">app.js</span>
+├── <span class="file">package.json</span>
+└── <span class="file">server.js</span>
+            </div>
+
+            <h3>Generation Command</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify generate ./ecommerce-api --output ./ecommerce-mcp --security</code></pre>
+            </div>
+
+            <h3>Generated MCP Server Features</h3>
+            <ul>
+                <li><strong>Product Management:</strong> Search, filter, and manage product catalog</li>
+                <li><strong>Order Processing:</strong> Create, update, and track customer orders</li>
+                <li><strong>User Operations:</strong> Handle customer registration, authentication, and profiles</li>
+                <li><strong>Inventory Tools:</strong> Stock management and availability checking</li>
+                <li><strong>Analytics:</strong> Sales reporting and customer insights</li>
+            </ul>
+
+            <h3>Sample Generated Tools</h3>
+            <div class="code-block">
+                <pre><code class="language-typescript">// search_products tool
+async function searchProducts(query: string, category?: string, priceRange?: [number, number]) {
+  const params = new URLSearchParams({ q: query });
+  if (category) params.append('category', category);
+  if (priceRange) {
+    params.append('minPrice', priceRange[0].toString());
+    params.append('maxPrice', priceRange[1].toString());
+  }
+  
+  const response = await fetch(`${API_BASE}/products/search?${params}`);
+  return await response.json();
+}
+
+// create_order tool
+async function createOrder(items: OrderItem[], customerInfo: CustomerInfo) {
+  const response = await fetch(`${API_BASE}/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ items, customer: customerInfo })
+  });
+  return await response.json();
+}</code></pre>
+            </div>
+
+            <a href="https://github.com/me-saurabhkohli/agentify/tree/main/examples/ecommerce-api" class="demo-link" target="_blank">
+                🔗 View Complete Example
+            </a>
+        </div>
+
+        <div class="example-card">
+            <div class="example-header">
+                <div class="example-icon">📊</div>
+                <div class="example-meta">
+                    <h2 class="example-title">Data Analytics API</h2>
+                    <p class="example-description">Python FastAPI service for data processing, visualization, and machine learning model serving.</p>
+                    <div class="example-stats">
+                        <span class="stat-badge">8 endpoints</span>
+                        <span class="stat-badge">Python + FastAPI</span>
+                        <span class="stat-badge">ML Models</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Original Project Structure</h3>
+            <div class="folder-structure">
+<span class="folder">analytics-api/</span>
+├── <span class="folder">app/</span>
+│   ├── <span class="folder">routers/</span>
+│   │   ├── <span class="file">data.py</span>
+│   │   ├── <span class="file">models.py</span>
+│   │   └── <span class="file">visualizations.py</span>
+│   ├── <span class="file">main.py</span>
+│   └── <span class="file">database.py</span>
+├── <span class="folder">models/</span>
+│   ├── <span class="file">classifier.pkl</span>
+│   └── <span class="file">regressor.pkl</span>
+└── <span class="file">requirements.txt</span>
+            </div>
+
+            <h3>Generation Command</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify generate ./analytics-api --type rest-api --plugins ml-analyzer</code></pre>
+            </div>
+
+            <h3>Generated MCP Server Features</h3>
+            <ul>
+                <li><strong>Data Upload:</strong> Import datasets from various sources (CSV, JSON, databases)</li>
+                <li><strong>Data Analysis:</strong> Statistical analysis, correlation matrices, data profiling</li>
+                <li><strong>Visualizations:</strong> Generate charts, graphs, and interactive dashboards</li>
+                <li><strong>Model Predictions:</strong> Run ML models on new data for predictions</li>
+                <li><strong>Export Results:</strong> Download processed data and visualizations</li>
+            </ul>
+
+            <h3>Sample Generated Tools</h3>
+            <div class="code-block">
+                <pre><code class="language-typescript">// analyze_dataset tool
+async function analyzeDataset(datasetId: string, analysisType: 'summary' | 'correlation' | 'distribution') {
+  const response = await fetch(`${API_BASE}/data/${datasetId}/analyze`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ type: analysisType })
+  });
+  return await response.json();
+}
+
+// predict_with_model tool
+async function predictWithModel(modelName: string, inputData: Record<string, any>) {
+  const response = await fetch(`${API_BASE}/models/${modelName}/predict`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ data: inputData })
+  });
+  return await response.json();
+}</code></pre>
+            </div>
+
+            <a href="https://github.com/me-saurabhkohli/agentify/tree/main/examples/analytics-api" class="demo-link" target="_blank">
+                🔗 View Complete Example
+            </a>
+        </div>
+
+        <div class="example-card">
+            <div class="example-header">
+                <div class="example-icon">🏗️</div>
+                <div class="example-meta">
+                    <h2 class="example-title">Project Management API</h2>
+                    <p class="example-description">Django REST framework API for project management with tasks, teams, and time tracking.</p>
+                    <div class="example-stats">
+                        <span class="stat-badge">12 endpoints</span>
+                        <span class="stat-badge">Django + DRF</span>
+                        <span class="stat-badge">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Original Project Structure</h3>
+            <div class="folder-structure">
+<span class="folder">project-manager/</span>
+├── <span class="folder">projects/</span>
+│   ├── <span class="file">models.py</span>
+│   ├── <span class="file">serializers.py</span>
+│   └── <span class="file">views.py</span>
+├── <span class="folder">tasks/</span>
+│   ├── <span class="file">models.py</span>
+│   ├── <span class="file">serializers.py</span>
+│   └── <span class="file">views.py</span>
+├── <span class="file">settings.py</span>
+└── <span class="file">urls.py</span>
+            </div>
+
+            <h3>Generation Command</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify interactive ./project-manager</code></pre>
+            </div>
+
+            <h3>Generated MCP Server Features</h3>
+            <ul>
+                <li><strong>Project Creation:</strong> Set up new projects with templates and configurations</li>
+                <li><strong>Task Management:</strong> Create, assign, and track project tasks</li>
+                <li><strong>Team Collaboration:</strong> Manage team members and permissions</li>
+                <li><strong>Time Tracking:</strong> Log work hours and generate timesheets</li>
+                <li><strong>Reporting:</strong> Project progress, team productivity, and deadline tracking</li>
+            </ul>
+
+            <a href="https://github.com/me-saurabhkohli/agentify/tree/main/examples/project-manager" class="demo-link" target="_blank">
+                🔗 View Complete Example
+            </a>
+        </div>
+
+        <div class="example-card">
+            <div class="example-header">
+                <div class="example-icon">📱</div>
+                <div class="example-meta">
+                    <h2 class="example-title">Social Media API</h2>
+                    <p class="example-description">Ruby on Rails API for a social platform with posts, comments, likes, and user interactions.</p>
+                    <div class="example-stats">
+                        <span class="stat-badge">20 endpoints</span>
+                        <span class="stat-badge">Ruby on Rails</span>
+                        <span class="stat-badge">Real-time</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Original Project Structure</h3>
+            <div class="folder-structure">
+<span class="folder">social-api/</span>
+├── <span class="folder">app/</span>
+│   ├── <span class="folder">controllers/</span>
+│   │   ├── <span class="file">posts_controller.rb</span>
+│   │   ├── <span class="file">comments_controller.rb</span>
+│   │   └── <span class="file">users_controller.rb</span>
+│   └── <span class="folder">models/</span>
+│       ├── <span class="file">post.rb</span>
+│       ├── <span class="file">comment.rb</span>
+│       └── <span class="file">user.rb</span>
+├── <span class="folder">config/</span>
+│   └── <span class="file">routes.rb</span>
+└── <span class="file">Gemfile</span>
+            </div>
+
+            <h3>Generated MCP Server Features</h3>
+            <ul>
+                <li><strong>Content Management:</strong> Create, edit, and moderate posts and comments</li>
+                <li><strong>User Interactions:</strong> Handle likes, shares, follows, and messaging</li>
+                <li><strong>Feed Generation:</strong> Create personalized content feeds</li>
+                <li><strong>Content Moderation:</strong> Automated content filtering and reporting</li>
+                <li><strong>Analytics:</strong> Engagement metrics and user behavior insights</li>
+            </ul>
+
+            <a href="https://github.com/me-saurabhkohli/agentify/tree/main/examples/social-api" class="demo-link" target="_blank">
+                🔗 View Complete Example
+            </a>
+        </div>
+
+        <div class="example-card">
+            <div class="example-header">
+                <div class="example-icon">📖</div>
+                <div class="example-meta">
+                    <h2 class="example-title">OpenAPI Specification</h2>
+                    <p class="example-description">Converting an existing OpenAPI/Swagger specification into a functional MCP server.</p>
+                    <div class="example-stats">
+                        <span class="stat-badge">OpenAPI 3.0</span>
+                        <span class="stat-badge">25 endpoints</span>
+                        <span class="stat-badge">Auto-generated</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Original OpenAPI File</h3>
+            <div class="folder-structure">
+<span class="folder">api-spec/</span>
+├── <span class="file">openapi.yaml</span>
+├── <span class="file">README.md</span>
+└── <span class="folder">examples/</span>
+    ├── <span class="file">requests.json</span>
+    └── <span class="file">responses.json</span>
+            </div>
+
+            <h3>Generation Command</h3>
+            <div class="code-block">
+                <pre><code class="language-bash">agentify generate ./api-spec/openapi.yaml --type openapi --format typescript</code></pre>
+            </div>
+
+            <h3>Sample OpenAPI Spec</h3>
+            <div class="code-block">
+                <pre><code class="language-yaml">openapi: 3.0.0
+info:
+  title: Pet Store API
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      summary: List all pets
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            maximum: 100
+      responses:
+        '200':
+          description: A list of pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pet'
+    post:
+      summary: Create a pet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '201':
+          description: Pet created
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        category:
+          type: string</code></pre>
+            </div>
+
+            <h3>Generated MCP Tools</h3>
+            <ul>
+                <li><strong>list_pets:</strong> Get all pets with optional filtering</li>
+                <li><strong>create_pet:</strong> Add new pets to the store</li>
+                <li><strong>get_pet_by_id:</strong> Retrieve specific pet information</li>
+                <li><strong>update_pet:</strong> Modify existing pet details</li>
+                <li><strong>delete_pet:</strong> Remove pets from the store</li>
+            </ul>
+
+            <a href="https://github.com/me-saurabhkohli/agentify/tree/main/examples/openapi-spec" class="demo-link" target="_blank">
+                🔗 View Complete Example
+            </a>
+        </div>
+
+        <h2>Try These Examples</h2>
+        <p>Each example includes:</p>
+        <ul>
+            <li>Complete source code for the original API</li>
+            <li>Generated MCP server with all tools</li>
+            <li>Configuration files and customization options</li>
+            <li>Test cases and usage examples</li>
+            <li>Deployment instructions</li>
+        </ul>
+
+        <h2>Community Examples</h2>
+        <p>Check out examples contributed by the community:</p>
+        <ul>
+            <li><a href="https://github.com/me-saurabhkohli/agentify/discussions/categories/examples" target="_blank">GitHub Discussions - Examples</a></li>
+            <li><a href="https://github.com/topics/mcp-agentify" target="_blank">Projects using MCP Agentify</a></li>
+        </ul>
+
+        <p><strong>Want to contribute your own example?</strong> <a href="https://github.com/me-saurabhkohli/agentify/blob/main/CONTRIBUTING.md" target="_blank">See our contribution guide</a></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>

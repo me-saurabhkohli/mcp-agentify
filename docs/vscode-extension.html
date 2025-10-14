@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code Extension - MCP Agentify</title>
+    <meta name="description" content="Using MCP Agentify VS Code extension for seamless MCP server generation">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <style>
+        .docs-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        .feature-card {
+            background: var(--background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .feature-title {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .screenshot {
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+        }
+        .install-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            margin: 1rem 0;
+        }
+        .install-button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        .command-palette {
+            background: var(--background-alt);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">🚀</span>
+                <span class="nav-title">MCP Agentify</span>
+            </div>
+            <div class="nav-links">
+                <a href="./index.html">Home</a>
+                <a href="./getting-started.html">Getting Started</a>
+                <a href="./api-reference.html">API Reference</a>
+                <a href="./vscode-extension.html">VS Code Extension</a>
+                <a href="https://github.com/me-saurabhkohli/agentify" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-container">
+        <h1>VS Code Extension</h1>
+        <p>The MCP Agentify VS Code extension brings the power of MCP server generation directly into your development environment.</p>
+
+        <a href="https://marketplace.visualstudio.com/items?itemName=saurabhkohli.mcp-agentify" class="install-button" target="_blank">
+            📦 Install from VS Code Marketplace
+        </a>
+
+        <h2>Features</h2>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3 class="feature-title">One-Click Generation</h3>
+            <p>Generate complete MCP servers with a single command from the Command Palette or Explorer context menu.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3 class="feature-title">Smart Project Detection</h3>
+            <p>Automatically detects your project type and suggests the best generation strategy for your codebase.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">⚙️</div>
+            <h3 class="feature-title">Interactive Configuration</h3>
+            <p>Visual configuration panel with real-time preview of generation settings and output structure.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Progress Tracking</h3>
+            <p>Real-time progress indicators and detailed logs showing the generation process step-by-step.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔧</div>
+            <h3 class="feature-title">Integrated Terminal</h3>
+            <p>Built-in terminal integration for running generated servers and testing immediately after creation.</p>
+        </div>
+
+        <h2>Installation</h2>
+
+        <h3>From VS Code Marketplace</h3>
+        <ol>
+            <li>Open VS Code</li>
+            <li>Go to Extensions view (<code>Ctrl+Shift+X</code> or <code>Cmd+Shift+X</code>)</li>
+            <li>Search for "MCP Agentify"</li>
+            <li>Click Install</li>
+        </ol>
+
+        <h3>From Command Line</h3>
+        <div class="code-block">
+            <pre><code class="language-bash">code --install-extension saurabhkohli.mcp-agentify</code></pre>
+        </div>
+
+        <h3>Manual Installation</h3>
+        <ol>
+            <li>Download the <code>.vsix</code> file from the <a href="https://github.com/me-saurabhkohli/agentify/releases" target="_blank">releases page</a></li>
+            <li>Open VS Code</li>
+            <li>Run <code>Extensions: Install from VSIX...</code> from Command Palette</li>
+            <li>Select the downloaded <code>.vsix</code> file</li>
+        </ol>
+
+        <h2>Usage</h2>
+
+        <h3>Command Palette</h3>
+        <p>Open Command Palette (<code>Ctrl+Shift+P</code> or <code>Cmd+Shift+P</code>) and use these commands:</p>
+
+        <div class="command-palette">
+            <div><strong>MCP Agentify: Generate Server</strong> - Generate MCP server from current project</div>
+            <div><strong>MCP Agentify: Analyze Project</strong> - Analyze project structure and endpoints</div>
+            <div><strong>MCP Agentify: Interactive Setup</strong> - Launch guided setup wizard</div>
+            <div><strong>MCP Agentify: Open Configuration</strong> - Open or create configuration file</div>
+        </div>
+
+        <h3>Explorer Context Menu</h3>
+        <p>Right-click on any folder in the Explorer to access generation options:</p>
+        <ul>
+            <li><strong>Generate MCP Server</strong> - Generate server from selected folder</li>
+            <li><strong>Analyze with Agentify</strong> - Analyze folder structure</li>
+            <li><strong>Configure Agentify</strong> - Create/edit configuration for this folder</li>
+        </ul>
+
+        <h3>Status Bar</h3>
+        <p>The extension adds a status bar item showing:</p>
+        <ul>
+            <li>Current project analysis status</li>
+            <li>Quick access to generation commands</li>
+            <li>Progress indicator during generation</li>
+        </ul>
+
+        <h2>Configuration</h2>
+
+        <h3>Extension Settings</h3>
+        <p>Configure the extension through VS Code Settings:</p>
+
+        <div class="code-block">
+            <pre><code class="language-json">{
+  "mcpAgentify.defaultOutputPath": "./mcp-server",
+  "mcpAgentify.defaultFormat": "typescript",
+  "mcpAgentify.includeTests": true,
+  "mcpAgentify.includeDocs": true,
+  "mcpAgentify.autoOpenGenerated": true,
+  "mcpAgentify.showProgressNotifications": true,
+  "mcpAgentify.verboseLogging": false
+}</code></pre>
+        </div>
+
+        <h3>Workspace Configuration</h3>
+        <p>Create an <code>agentify.config.json</code> file in your workspace root:</p>
+
+        <div class="code-block">
+            <pre><code class="language-json">{
+  "serverName": "my-api-server",
+  "description": "Generated MCP server for My API",
+  "version": "1.0.0",
+  "outputFormat": "typescript",
+  "includeTests": true,
+  "includeDocumentation": true,
+  "excludeEndpoints": [
+    "GET:/health",
+    "POST:/internal/*"
+  ],
+  "plugins": [
+    "rest-analyzer",
+    "template-engine"
+  ]
+}</code></pre>
+        </div>
+
+        <h2>Keyboard Shortcuts</h2>
+
+        <table class="options-table">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Windows/Linux</th>
+                    <th>macOS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Generate MCP Server</td>
+                    <td><code>Ctrl+Alt+G</code></td>
+                    <td><code>Cmd+Alt+G</code></td>
+                </tr>
+                <tr>
+                    <td>Analyze Project</td>
+                    <td><code>Ctrl+Alt+A</code></td>
+                    <td><code>Cmd+Alt+A</code></td>
+                </tr>
+                <tr>
+                    <td>Interactive Setup</td>
+                    <td><code>Ctrl+Alt+I</code></td>
+                    <td><code>Cmd+Alt+I</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Output Panel</h2>
+        <p>The extension provides detailed logging in the Output panel. Select "MCP Agentify" from the dropdown to view:</p>
+        <ul>
+            <li>Project analysis results</li>
+            <li>Generation progress</li>
+            <li>Error messages and troubleshooting info</li>
+            <li>Performance metrics</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+
+        <h3>Extension Not Working</h3>
+        <ol>
+            <li>Check that Node.js is installed and accessible</li>
+            <li>Verify the extension is enabled in Extensions view</li>
+            <li>Reload VS Code window (<code>Developer: Reload Window</code>)</li>
+            <li>Check Output panel for error messages</li>
+        </ol>
+
+        <h3>Generation Fails</h3>
+        <ol>
+            <li>Ensure project structure is supported</li>
+            <li>Check file permissions in output directory</li>
+            <li>Verify configuration file syntax</li>
+            <li>Enable verbose logging for detailed diagnostics</li>
+        </ol>
+
+        <h3>Performance Issues</h3>
+        <ol>
+            <li>Exclude large directories in <code>.gitignore</code></li>
+            <li>Use specific project paths instead of workspace root</li>
+            <li>Disable unnecessary plugins in configuration</li>
+            <li>Consider using CLI for very large projects</li>
+        </ol>
+
+        <h2>Contributing</h2>
+        <p>The extension is open source! Contribute on <a href="https://github.com/me-saurabhkohli/agentify" target="_blank">GitHub</a>:</p>
+        <ul>
+            <li>Report bugs and request features</li>
+            <li>Submit pull requests</li>
+            <li>Improve documentation</li>
+            <li>Share usage examples</li>
+        </ul>
+
+        <h2>Changelog</h2>
+        <p>See the <a href="https://github.com/me-saurabhkohli/agentify/blob/main/CHANGELOG.md" target="_blank">CHANGELOG.md</a> for release notes and version history.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>

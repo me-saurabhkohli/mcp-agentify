@@ -1,0 +1,43 @@
+url: "https://me-saurabhkohli.github.io/agentify"
+baseurl: "/agentify"
+
+title: "MCP Agentify"
+description: "Transform your APIs into Model Context Protocol servers with enterprise-grade features"
+author: "Saurabh Kohli"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - README.md
+  - .gitignore
+  - .github/
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# SEO
+twitter:
+  username: saurabhkohli
+  card: summary_large_image
+
+social:
+  name: Saurabh Kohli
+  links:
+    - https://github.com/me-saurabhkohli
+    - https://github.com/me-saurabhkohli/agentify
+
+# Google Analytics (optional)
+# google_analytics: G-XXXXXXXXXX
