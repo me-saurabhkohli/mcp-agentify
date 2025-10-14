@@ -1,0 +1,57 @@
+# Source files
+src/
+tsconfig.json
+.env
+.env.*
+Todo.md
+
+# Development files
+.eslintrc*
+.prettierrc*
+jest.config.*
+*.test.ts
+*.spec.ts
+
+# Build artifacts
+*.tsbuildinfo
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output/
+
+# Test directories
+test/
+tests/
+__tests__/
+
+# Development dependencies
+node_modules/
+
+# Generated test output
+test-*/
+generated-*/
+
+# Lock files (let users choose their package manager)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

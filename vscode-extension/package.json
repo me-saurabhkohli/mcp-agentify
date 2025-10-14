@@ -1,0 +1,296 @@
+{
+  "name": "mcp-agentify",
+  "displayName": "MCP Agentify",
+  "description": "Generate Model Context Protocol servers from your existing APIs with enterprise-grade features",
+  "version": "1.0.0",
+  "publisher": "SaurabhKohli",
+  "author": "Saurabh Kohli <me.saurabhkohli@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/me-saurabhkohli/agentify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/me-saurabhkohli/agentify/issues"
+  },
+  "homepage": "https://github.com/me-saurabhkohli/agentify#readme",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets",
+    "Extension Packs"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "api",
+    "rest",
+    "code-generation",
+    "typescript",
+    "enterprise"
+  ],
+  "activationEvents": [
+    "onCommand:mcp-agentify.analyze",
+    "onCommand:mcp-agentify.generate",
+    "onCommand:mcp-agentify.interactive",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:java",
+    "onLanguage:go",
+    "workspaceContains:package.json",
+    "workspaceContains:requirements.txt",
+    "workspaceContains:pom.xml",
+    "workspaceContains:go.mod"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mcp-agentify.analyze",
+        "title": "Analyze Project",
+        "category": "MCP Agentify",
+        "icon": "$(search)"
+      },
+      {
+        "command": "mcp-agentify.generate",
+        "title": "Generate MCP Server",
+        "category": "MCP Agentify",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "mcp-agentify.interactive",
+        "title": "Interactive Setup",
+        "category": "MCP Agentify",
+        "icon": "$(wand)"
+      },
+      {
+        "command": "mcp-agentify.quickSetup",
+        "title": "Quick Setup",
+        "category": "MCP Agentify",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "mcp-agentify.openWebview",
+        "title": "Open Agentify Panel",
+        "category": "MCP Agentify",
+        "icon": "$(browser)"
+      },
+      {
+        "command": "mcp-agentify.viewEndpoints",
+        "title": "View Detected Endpoints",
+        "category": "MCP Agentify",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "mcp-agentify.installCLI",
+        "title": "Install/Update CLI",
+        "category": "MCP Agentify",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "mcp-agentify.showDocumentation",
+        "title": "Show Documentation",
+        "category": "MCP Agentify",
+        "icon": "$(book)"
+      },
+      {
+        "command": "mcp-agentify.openSettings",
+        "title": "Open Settings",
+        "category": "MCP Agentify",
+        "icon": "$(gear)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "mcp-agentify.analyze",
+          "when": "explorerResourceIsFolder",
+          "group": "mcp-agentify@1"
+        },
+        {
+          "command": "mcp-agentify.generate",
+          "when": "explorerResourceIsFolder",
+          "group": "mcp-agentify@2"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "mcp-agentify.analyze",
+          "when": "resourceExtname =~ /\\.(js|ts|py|java|go)$/",
+          "group": "mcp-agentify@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "mcp-agentify.analyze",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "mcp-agentify.generate",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "mcp-agentify.interactive",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "mcp-agentify.quickSetup",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mcp-agentify",
+          "title": "MCP Agentify",
+          "icon": "$(rocket)"
+        }
+      ]
+    },
+    "views": {
+      "mcp-agentify": [
+        {
+          "id": "mcp-agentify.projectOverview",
+          "name": "Project Overview",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "id": "mcp-agentify.detectedEndpoints",
+          "name": "Detected Endpoints",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "id": "mcp-agentify.generatedServers",
+          "name": "Generated Servers",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "id": "mcp-agentify.plugins",
+          "name": "Plugins",
+          "when": "workspaceFolderCount > 0"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "mcp-agentify.projectOverview",
+        "contents": "Welcome to MCP Agentify! 🚀\n\nAnalyze your project to detect API endpoints and generate MCP servers.\n\n[Analyze Project](command:mcp-agentify.analyze)\n[Interactive Setup](command:mcp-agentify.interactive)\n[Quick Setup](command:mcp-agentify.quickSetup)\n\nNeed the CLI? [Install CLI](command:mcp-agentify.installCLI)"
+      }
+    ],
+    "configuration": {
+      "title": "MCP Agentify",
+      "properties": {
+        "mcp-agentify.cliPath": {
+          "type": "string",
+          "default": "npx mcp-agentify",
+          "description": "Path to MCP Agentify CLI command"
+        },
+        "mcp-agentify.autoAnalyze": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically analyze project when workspace is opened"
+        },
+        "mcp-agentify.outputDirectory": {
+          "type": "string",
+          "default": "./mcp-server",
+          "description": "Default output directory for generated MCP servers"
+        },
+        "mcp-agentify.preferredFormat": {
+          "type": "string",
+          "enum": [
+            "typescript",
+            "javascript"
+          ],
+          "default": "typescript",
+          "description": "Preferred output format for generated code"
+        },
+        "mcp-agentify.includeTests": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include test files in generated projects"
+        },
+        "mcp-agentify.includeDocumentation": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include documentation in generated projects"
+        },
+        "mcp-agentify.enableSecurity": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable enterprise security features"
+        },
+        "mcp-agentify.enablePlugins": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable plugin system"
+        },
+        "mcp-agentify.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show success/error notifications"
+        },
+        "mcp-agentify.debugMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug mode for troubleshooting"
+        }
+      }
+    },
+    "snippets": [
+      {
+        "language": "typescript",
+        "path": "./snippets/mcp-snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/mcp-snippets.json"
+      }
+    ],
+    "taskDefinitions": [
+      {
+        "type": "mcp-agentify",
+        "required": [
+          "command"
+        ],
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The MCP Agentify command to run"
+          },
+          "args": {
+            "type": "array",
+            "description": "Command arguments"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^3.6.2",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

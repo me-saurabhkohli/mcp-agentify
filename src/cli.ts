@@ -5,8 +5,34 @@ import chalk from 'chalk';
 import { MCPGenerator } from './generator/MCPGenerator';
 import { ProjectAnalyzer } from './analyzer/ProjectAnalyzer';
 import { ConfigManager } from './config/ConfigManager';
+import { SecurityMiddleware } from './security/SecurityMiddleware';
 
 const program = new Command();
+const securityMiddleware = new SecurityMiddleware();
+
+// Initialize security context
+async function initializeSecurity() {
+  try {
+    await securityMiddleware.initialize();
+  } catch (error) {
+    if (process.env.RBAC_ENABLED === 'true') {
+      console.error(chalk.red('❌ Security initialization failed:'), error);
+      process.exit(1);
+    }
+    // Continue without security if RBAC is not enabled
+  }
+}
+
+// Cleanup on exit
+process.on('SIGINT', async () => {
+  await securityMiddleware.cleanup();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  await securityMiddleware.cleanup();
+  process.exit(0);
+});
 
 program
   .name('agentify')
@@ -24,16 +50,25 @@ program
   .option('--dry-run', 'Show what would be generated without creating files')
   .action(async (options) => {
     try {
+      await initializeSecurity();
+      
+      // Validate command with security middleware
+      const validation = await securityMiddleware.validateCommand('generate', options);
+      if (!validation.success) {
+        console.error(chalk.red('❌ Security validation failed:'), validation.error);
+        process.exit(1);
+      }
+      
       console.log(chalk.blue('🚀 Starting MCP server generation...'));
       
       const configManager = new ConfigManager();
       const config = await configManager.loadConfig(options.config);
       
       const analyzer = new ProjectAnalyzer();
-      const projectInfo = await analyzer.analyze(options.project, options.type);
+      const projectInfo = await analyzer.analyze(validation.validatedArgs.project, validation.validatedArgs.type);
       
       const generator = new MCPGenerator(config);
-      await generator.generate(projectInfo, options.output, options.dryRun);
+      await generator.generate(projectInfo, validation.validatedArgs.output, validation.validatedArgs.dryRun);
       
       console.log(chalk.green('✅ MCP server generated successfully!'));
     } catch (error) {
@@ -50,12 +85,21 @@ program
   .option('--json', 'Output analysis results as JSON')
   .action(async (options) => {
     try {
+      await initializeSecurity();
+      
+      // Validate command with security middleware
+      const validation = await securityMiddleware.validateCommand('analyze', options);
+      if (!validation.success) {
+        console.error(chalk.red('❌ Security validation failed:'), validation.error);
+        process.exit(1);
+      }
+      
       console.log(chalk.blue('🔍 Analyzing project...'));
       
       const analyzer = new ProjectAnalyzer();
-      const projectInfo = await analyzer.analyze(options.project, options.type);
+      const projectInfo = await analyzer.analyze(validation.validatedArgs.project, validation.validatedArgs.type);
       
-      if (options.json) {
+      if (validation.validatedArgs.json) {
         console.log(JSON.stringify(projectInfo, null, 2));
       } else {
         analyzer.printAnalysis(projectInfo);
