@@ -74,8 +74,121 @@
     </nav>
 
     <div class="docs-container">
-        <h1>API Reference</h1>
-        <p>Complete reference for all MCP Agentify CLI commands and configuration options.</p>
+        <h1>API Reference <span class="version-badge">v2.0</span></h1>
+        <p>Complete reference for MCP Agentify v2.0 CLI commands, VS Code extension commands, AI features, debugging tools, and enhanced configuration options.</p>
+
+        <h2>🚀 Enhanced v2.0 Commands</h2>
+
+        <div class="command-card">
+            <h2 class="command-title">VS Code Extension Commands</h2>
+            <p class="command-description">New v2.0 VS Code extension commands for enhanced development workflow.</p>
+            
+            <h3>Main Commands</h3>
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                        <th>Shortcut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>MCP Agentify: Analyze Project</code></td>
+                        <td>AI-powered deep project analysis</td>
+                        <td><code>Ctrl+Alt+A</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify: Generate MCP Server</code></td>
+                        <td>Generate enhanced MCP server with v2.0 features</td>
+                        <td><code>Ctrl+Alt+G</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify: Interactive Setup</code></td>
+                        <td>Guided setup wizard with AI assistance</td>
+                        <td><code>Ctrl+Alt+I</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify: Start MCP Debug Server</code></td>
+                        <td>Launch debugging server with 23 tools</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify: Show MCP Server Status</code></td>
+                        <td>Real-time health monitoring dashboard</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Debug Commands</h3>
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>MCP Agentify Debug: List MCP Tools</code></td>
+                        <td>View all 23 available debugging tools</td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify Debug: Inspect MCP Context</code></td>
+                        <td>Debug MCP context and variables</td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify Debug: Start Debugging</code></td>
+                        <td>Attach debugger to MCP server</td>
+                    </tr>
+                    <tr>
+                        <td><code>MCP Agentify Debug: Attach to Server</code></td>
+                        <td>Connect to running MCP server instance</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="command-card">
+            <h2 class="command-title">Enhanced CLI Commands</h2>
+            <p class="command-description">Updated CLI commands with v2.0 AI and debugging features.</p>
+            
+            <h3>New AI Options</h3>
+            <table class="options-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>--ai-insights</code></td>
+                        <td>Enable AI-powered analysis and recommendations</td>
+                        <td><code>agentify analyze --ai-insights</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--ai-docs</code></td>
+                        <td>Generate AI-powered documentation</td>
+                        <td><code>agentify generate --ai-docs</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--health-check</code></td>
+                        <td>Run comprehensive health monitoring</td>
+                        <td><code>agentify analyze --health-check</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>--debug-tools</code></td>
+                        <td>Include all 23 debugging tools in output</td>
+                        <td><code>agentify generate --debug-tools</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>📚 Core Commands</h2>
 
         <div class="command-card">
             <h2 class="command-title">agentify analyze</h2>

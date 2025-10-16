@@ -100,18 +100,20 @@
             <h4>Documentation</h4>
             <ul>
                 <li><a href="#installation">Installation</a></li>
+                <li><a href="#whats-new">What's New in v2.0</a></li>
                 <li><a href="#quick-start">Quick Start</a></li>
-                <li><a href="#basic-usage">Basic Usage</a></li>
+                <li><a href="#ai-features">AI-Powered Features</a></li>
+                <li><a href="#debugging-tools">Debugging Tools</a></li>
+                <li><a href="#health-monitoring">Health Monitoring</a></li>
                 <li><a href="#configuration">Configuration</a></li>
-                <li><a href="#examples">Examples</a></li>
                 <li><a href="#troubleshooting">Troubleshooting</a></li>
             </ul>
         </div>
 
         <div class="docs-content">
-            <h1>Getting Started with MCP Agentify</h1>
+            <h1>Getting Started with MCP Agentify <span class="version-badge">v2.0</span></h1>
             
-            <p>MCP Agentify is a comprehensive platform that transforms your existing REST APIs into Model Context Protocol (MCP) servers. This guide will help you get started quickly with both the CLI tool and VS Code extension.</p>
+            <p>MCP Agentify v2.0 is an enhanced AI-powered platform with modular architecture that transforms your existing REST APIs into Model Context Protocol (MCP) servers. This guide covers the new features including AI integration, comprehensive debugging tools, and enterprise-grade health monitoring.</p>
 
             <h2 id="installation">Installation</h2>
 
@@ -136,6 +138,44 @@ code --install-extension saurabhkohli.mcp-agentify
 
 # Or search "MCP Agentify" in VS Code Extensions marketplace</code></pre>
             </div>
+
+            <h2 id="whats-new">What's New in v2.0</h2>
+            
+            <h3>🤖 AI-Powered Development</h3>
+            <ul>
+                <li><strong>OpenAI Integration:</strong> Intelligent code generation with contextual understanding</li>
+                <li><strong>Error Analysis:</strong> AI-powered error diagnosis and solution recommendations</li>
+                <li><strong>Performance Insights:</strong> Automated optimization suggestions</li>
+                <li><strong>Documentation Generation:</strong> AI-generated comprehensive documentation</li>
+            </ul>
+
+            <h3>🏗️ Modular Architecture</h3>
+            <ul>
+                <li><strong>8 Specialized Services:</strong> Logger, Error Handler, Config Manager, Health Checker, Telemetry, LLM Orchestrator, Project Analyzer, Code Generator</li>
+                <li><strong>Clean Separation:</strong> Service-based design with dependency injection</li>
+                <li><strong>Enterprise Scalability:</strong> Production-ready modular components</li>
+            </ul>
+
+            <h3>🔧 Comprehensive Debugging</h3>
+            <ul>
+                <li><strong>23 Built-in Tools:</strong> Health checks, connection testing, performance monitoring</li>
+                <li><strong>VS Code DAP Integration:</strong> Native debugging with breakpoints and inspection</li>
+                <li><strong>Real-time Monitoring:</strong> Live system status and metrics</li>
+            </ul>
+
+            <h3>📊 Health Monitoring System</h3>
+            <ul>
+                <li><strong>System Health:</strong> Node.js runtime, VS Code environment, workspace status</li>
+                <li><strong>Network Connectivity:</strong> External service connectivity testing</li>
+                <li><strong>Performance Metrics:</strong> Response times, resource usage tracking</li>
+            </ul>
+
+            <h3>🔒 Privacy-First Design</h3>
+            <ul>
+                <li><strong>Local-Only Telemetry:</strong> No external data transmission</li>
+                <li><strong>Secure Storage:</strong> Encrypted sensitive data handling</li>
+                <li><strong>Granular Control:</strong> User-controlled privacy settings</li>
+            </ul>
 
             <h2 id="quick-start">Quick Start</h2>
 
@@ -172,7 +212,84 @@ agentify generate --format typescript --tests --docs</code></pre>
 agentify interactive</code></pre>
             </div>
 
-            <h2 id="basic-usage">Basic Usage</h2>
+            <h2 id="ai-features">AI-Powered Features</h2>
+
+            <h3>OpenAI Integration</h3>
+            <p>Configure AI assistance for enhanced development:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Set up OpenAI integration (optional)
+export OPENAI_API_KEY="your-api-key-here"
+
+# Enable AI features in VS Code extension
+# Settings > Extensions > MCP Agentify > Enable AI Features</code></pre>
+            </div>
+
+            <h3>AI-Enhanced Project Analysis</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># Analyze with AI insights
+agentify analyze --ai-insights
+
+# Generate recommendations
+agentify analyze --recommend-optimizations
+
+# Create AI-powered documentation
+agentify generate --ai-docs</code></pre>
+            </div>
+
+            <h2 id="debugging-tools">Debugging Tools</h2>
+
+            <h3>VS Code Debug Integration</h3>
+            <p>Enhanced debugging with 23 built-in tools:</p>
+            <div class="code-block">
+                <pre><code class="language-json">// .vscode/launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "mcp-agentify",
+      "request": "launch",
+      "name": "Debug MCP Server",
+      "program": "${workspaceFolder}/mcp-server/dist/index.js",
+      "cwd": "${workspaceFolder}/mcp-server"
+    }
+  ]
+}</code></pre>
+            </div>
+
+            <h3>Available Debug Commands</h3>
+            <ul>
+                <li><code>MCP Agentify Debug: Start Debugging MCP Server</code></li>
+                <li><code>MCP Agentify Debug: List MCP Tools</code></li>
+                <li><code>MCP Agentify Debug: Inspect MCP Context</code></li>
+                <li><code>MCP Agentify: Show MCP Server Status</code></li>
+            </ul>
+
+            <h2 id="health-monitoring">Health Monitoring</h2>
+
+            <h3>System Health Dashboard</h3>
+            <p>Access comprehensive health monitoring:</p>
+            <div class="code-block">
+                <pre><code class="language-bash"># Command Palette in VS Code
+# Run: "MCP Agentify: Show MCP Server Status"
+
+# View health dashboard with:
+# - Node.js runtime status
+# - VS Code environment health  
+# - Workspace file permissions
+# - MCP server connectivity
+# - Network connectivity tests</code></pre>
+            </div>
+
+            <h3>Health Check Categories</h3>
+            <ul>
+                <li><strong>Runtime Health:</strong> Node.js version, memory usage, CPU performance</li>
+                <li><strong>Environment:</strong> VS Code API status, extension compatibility</li>
+                <li><strong>Workspace:</strong> File permissions, project structure validation</li>
+                <li><strong>Network:</strong> External connectivity, npm registry access</li>
+                <li><strong>MCP Server:</strong> Server responsiveness, tool availability</li>
+            </ul>
+
+            <h2 id="basic-usage">Enhanced Usage</h2>
 
             <h3>Supported Project Types</h3>
             <p>MCP Agentify automatically detects and supports:</p>

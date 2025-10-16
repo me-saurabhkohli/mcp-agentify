@@ -84,43 +84,49 @@
     </nav>
 
     <div class="docs-container">
-        <h1>VS Code Extension</h1>
-        <p>The MCP Agentify VS Code extension brings the power of MCP server generation directly into your development environment.</p>
+        <h1>VS Code Extension <span class="version-badge">v2.0</span></h1>
+        <p>The enhanced MCP Agentify VS Code extension v2.0 brings AI-powered MCP server generation with modular architecture, comprehensive debugging tools, and enterprise-grade features directly into your development environment.</p>
 
         <a href="https://marketplace.visualstudio.com/items?itemName=saurabhkohli.mcp-agentify" class="install-button" target="_blank">
             📦 Install from VS Code Marketplace
         </a>
 
-        <h2>Features</h2>
+        <h2>Enhanced v2.0 Features</h2>
 
         <div class="feature-card">
-            <div class="feature-icon">🎯</div>
-            <h3 class="feature-title">One-Click Generation</h3>
-            <p>Generate complete MCP servers with a single command from the Command Palette or Explorer context menu.</p>
+            <div class="feature-icon">🤖</div>
+            <h3 class="feature-title">AI-Powered Development</h3>
+            <p>Integrated OpenAI assistance for intelligent code generation, error analysis, and optimization recommendations with fallback mechanisms.</p>
         </div>
 
         <div class="feature-card">
-            <div class="feature-icon">🔍</div>
-            <h3 class="feature-title">Smart Project Detection</h3>
-            <p>Automatically detects your project type and suggests the best generation strategy for your codebase.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">⚙️</div>
-            <h3 class="feature-title">Interactive Configuration</h3>
-            <p>Visual configuration panel with real-time preview of generation settings and output structure.</p>
-        </div>
-
-        <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3 class="feature-title">Progress Tracking</h3>
-            <p>Real-time progress indicators and detailed logs showing the generation process step-by-step.</p>
+            <div class="feature-icon">🏗️</div>
+            <h3 class="feature-title">Modular Architecture</h3>
+            <p>Built on 8 specialized service classes including Logger, Error Handler, Health Checker, Configuration Manager, and Telemetry Service.</p>
         </div>
 
         <div class="feature-card">
             <div class="feature-icon">🔧</div>
-            <h3 class="feature-title">Integrated Terminal</h3>
-            <p>Built-in terminal integration for running generated servers and testing immediately after creation.</p>
+            <h3 class="feature-title">23 Built-in Debugging Tools</h3>
+            <p>Comprehensive debugging suite with health checks, performance monitoring, connection testing, and Visual Studio Code DAP integration.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3 class="feature-title">Real-time Health Monitoring</h3>
+            <p>System-wide health monitoring across Node.js runtime, VS Code environment, workspace, MCP server, and network connectivity.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3 class="feature-title">Privacy-Focused Telemetry</h3>
+            <p>Local-only analytics and telemetry with no external data transmission, ensuring complete privacy protection.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3 class="feature-title">Enhanced Activity Bar Integration</h3>
+            <p>Dedicated MCP Agentify sidebar with project overview, detected endpoints, generated servers, and plugin management.</p>
         </div>
 
         <h2>Installation</h2>
@@ -152,10 +158,14 @@
         <p>Open Command Palette (<code>Ctrl+Shift+P</code> or <code>Cmd+Shift+P</code>) and use these commands:</p>
 
         <div class="command-palette">
-            <div><strong>MCP Agentify: Generate Server</strong> - Generate MCP server from current project</div>
-            <div><strong>MCP Agentify: Analyze Project</strong> - Analyze project structure and endpoints</div>
+            <div><strong>MCP Agentify: Generate MCP Server</strong> - Generate MCP server from current project</div>
+            <div><strong>MCP Agentify: Analyze Project</strong> - Deep AI-powered project analysis</div>
             <div><strong>MCP Agentify: Interactive Setup</strong> - Launch guided setup wizard</div>
-            <div><strong>MCP Agentify: Open Configuration</strong> - Open or create configuration file</div>
+            <div><strong>MCP Agentify: Start MCP Debug Server</strong> - Launch debugging server</div>
+            <div><strong>MCP Agentify: Show MCP Server Status</strong> - View real-time server health</div>
+            <div><strong>MCP Agentify Debug: List MCP Tools</strong> - View available debugging tools</div>
+            <div><strong>MCP Agentify Debug: Inspect MCP Context</strong> - Debug MCP context</div>
+            <div><strong>MCP Agentify: Open Settings</strong> - Configure extension settings</div>
         </div>
 
         <h3>Explorer Context Menu</h3>
@@ -181,13 +191,16 @@
 
         <div class="code-block">
             <pre><code class="language-json">{
-  "mcpAgentify.defaultOutputPath": "./mcp-server",
-  "mcpAgentify.defaultFormat": "typescript",
-  "mcpAgentify.includeTests": true,
-  "mcpAgentify.includeDocs": true,
-  "mcpAgentify.autoOpenGenerated": true,
-  "mcpAgentify.showProgressNotifications": true,
-  "mcpAgentify.verboseLogging": false
+  "mcp-agentify.preferredFormat": "typescript",
+  "mcp-agentify.includeTests": true,
+  "mcp-agentify.includeDocumentation": true,
+  "mcp-agentify.enableSecurity": false,
+  "mcp-agentify.enablePlugins": true,
+  "mcp-agentify.autoAnalyze": true,
+  "mcp-agentify.autoStartMCPServer": true,
+  "mcp-agentify.mcpServerPort": 8890,
+  "mcp-agentify.debugMode": false,
+  "mcp-agentify.showNotifications": true
 }</code></pre>
         </div>
 

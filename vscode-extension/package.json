@@ -1,8 +1,8 @@
 {
   "name": "mcp-agentify",
-  "displayName": "MCP Agentify",
-  "description": "Generate Model Context Protocol servers from your existing APIs with enterprise-grade features",
-  "version": "1.0.0",
+  "displayName": "MCP Agentify Enhanced",
+  "description": "Generate Model Context Protocol servers from your existing APIs with AI assistance, enterprise-grade features, and comprehensive debugging tools",
+  "version": "2.0.0",
   "publisher": "SaurabhKohli",
   "author": "Saurabh Kohli <me.saurabhkohli@gmail.com>",
   "license": "MIT",
@@ -46,6 +46,9 @@
     "workspaceContains:go.mod"
   ],
   "main": "./out/extension.js",
+  "bin": {
+    "mcp-debug-cli": "./bin/mcp-debug-cli.js"
+  },
   "contributes": {
     "commands": [
       {
@@ -101,6 +104,48 @@
         "title": "Open Settings",
         "category": "MCP Agentify",
         "icon": "$(gear)"
+      },
+      {
+        "command": "mcp-agentify.debug.start",
+        "title": "Start Debugging MCP Server",
+        "category": "MCP Agentify Debug",
+        "icon": "$(debug-start)"
+      },
+      {
+        "command": "mcp-agentify.debug.attach",
+        "title": "Attach to MCP Server",
+        "category": "MCP Agentify Debug",
+        "icon": "$(debug-console)"
+      },
+      {
+        "command": "mcp-agentify.debug.listTools",
+        "title": "List MCP Tools",
+        "category": "MCP Agentify Debug",
+        "icon": "$(list-unordered)"
+      },
+      {
+        "command": "mcp-agentify.debug.inspectContext",
+        "title": "Inspect MCP Context",
+        "category": "MCP Agentify Debug",
+        "icon": "$(inspect)"
+      },
+      {
+        "command": "mcp-agentify.mcpServer.start",
+        "title": "Start MCP Debug Server",
+        "category": "MCP Agentify",
+        "icon": "$(play)"
+      },
+      {
+        "command": "mcp-agentify.mcpServer.stop",
+        "title": "Stop MCP Debug Server",
+        "category": "MCP Agentify",
+        "icon": "$(stop)"
+      },
+      {
+        "command": "mcp-agentify.mcpServer.status",
+        "title": "Show MCP Server Status",
+        "category": "MCP Agentify",
+        "icon": "$(pulse)"
       }
     ],
     "menus": {
@@ -237,6 +282,16 @@
           "type": "boolean",
           "default": false,
           "description": "Enable debug mode for troubleshooting"
+        },
+        "mcp-agentify.autoStartMCPServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically start MCP Debug Server when extension activates"
+        },
+        "mcp-agentify.mcpServerPort": {
+          "type": "number",
+          "default": 8890,
+          "description": "Port for MCP Debug Server"
         }
       }
     },
@@ -267,6 +322,131 @@
           }
         }
       }
+    ],
+    "debuggers": [
+      {
+        "type": "mcp-agentify",
+        "label": "MCP Agentify Debug",
+        "program": "./out/debugAdapter.js",
+        "runtime": "node",
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Absolute path to the MCP server entry point",
+                "default": "${workspaceFolder}/mcp-server/dist/index.js"
+              },
+              "args": {
+                "type": "array",
+                "description": "Command line arguments passed to the program",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "cwd": {
+                "type": "string",
+                "description": "Absolute path to the working directory of the program being debugged",
+                "default": "${workspaceFolder}/mcp-server"
+              },
+              "env": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Environment variables passed to the program",
+                "default": {}
+              },
+              "port": {
+                "type": "number",
+                "description": "Debug port",
+                "default": 9229
+              },
+              "host": {
+                "type": "string",
+                "description": "Debug host",
+                "default": "localhost"
+              },
+              "trace": {
+                "type": "boolean",
+                "description": "Enable logging of the Debug Adapter Protocol",
+                "default": false
+              },
+              "console": {
+                "enum": [
+                  "internalConsole",
+                  "integratedTerminal",
+                  "externalTerminal"
+                ],
+                "description": "Where to launch the debug target",
+                "default": "integratedTerminal"
+              }
+            }
+          },
+          "attach": {
+            "required": [
+              "port"
+            ],
+            "properties": {
+              "port": {
+                "type": "number",
+                "description": "Debug port to attach to",
+                "default": 9229
+              },
+              "host": {
+                "type": "string",
+                "description": "Debug host to attach to",
+                "default": "localhost"
+              },
+              "trace": {
+                "type": "boolean",
+                "description": "Enable logging of the Debug Adapter Protocol",
+                "default": false
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "mcp-agentify",
+            "request": "launch",
+            "name": "Debug MCP Server",
+            "program": "${workspaceFolder}/mcp-server/dist/index.js",
+            "cwd": "${workspaceFolder}/mcp-server",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "openOnSessionStart"
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "MCP Agentify: Launch",
+            "description": "A new configuration for launching an MCP server",
+            "body": {
+              "type": "mcp-agentify",
+              "request": "launch",
+              "name": "Debug MCP Server",
+              "program": "^\"\\${workspaceFolder}/mcp-server/dist/index.js\"",
+              "cwd": "^\"\\${workspaceFolder}/mcp-server\"",
+              "console": "integratedTerminal"
+            }
+          },
+          {
+            "label": "MCP Agentify: Attach",
+            "description": "A new configuration for attaching to a running MCP server",
+            "body": {
+              "type": "mcp-agentify",
+              "request": "attach",
+              "name": "Attach to MCP Server",
+              "port": 9229,
+              "host": "localhost"
+            }
+          }
+        ]
+      }
     ]
   },
   "scripts": {
@@ -276,21 +456,37 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
+    "test:unit": "npx mocha out/test/suite/*.test.js --timeout 10000",
+    "test:integration": "npx mocha out/test/suite/integration.test.js --timeout 15000",
+    "test:debug": "npx mocha out/test/suite/debugSession.test.js --timeout 10000",
+    "test:config": "npx mocha out/test/suite/debugConfigurationProvider.test.js --timeout 10000",
     "package": "vsce package",
     "publish": "vsce publish"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.10",
     "@types/node": "16.x",
+    "@types/sinon": "^10.0.0",
     "@types/vscode": "^1.74.0",
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "@vscode/test-electron": "^2.2.0",
     "@vscode/vsce": "^3.6.2",
     "eslint": "^8.28.0",
+    "glob": "^11.0.3",
+    "mocha": "^10.8.2",
+    "sinon": "^15.2.0",
     "typescript": "^4.9.4",
     "vsce": "^2.15.0"
   },
   "dependencies": {
-    "axios": "^1.6.0"
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "@vscode/debugadapter": "^1.65.0",
+    "@vscode/debugprotocol": "^1.65.0",
+    "await-notify": "^1.0.1",
+    "axios": "^1.6.0",
+    "express": "^5.1.0",
+    "ws": "^8.18.3",
+    "zod": "^3.25.76"
   }
 }

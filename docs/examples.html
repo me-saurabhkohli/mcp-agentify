@@ -103,9 +103,142 @@
         </div>
     </nav>
 
-    <div class="docs-container">
-        <h1>Examples</h1>
-        <p>Real-world examples showcasing how MCP Agentify transforms different types of projects into powerful MCP servers.</p>
+        <div class="docs-container">
+        <h1>Examples <span class="version-badge">v2.0</span></h1>
+        <p>Real-world examples showcasing enhanced v2.0 features including AI-powered analysis, comprehensive debugging, and modular architecture across different frameworks and project types.</p>
+
+        <div class="example-card">
+            <div class="example-header">
+                <div class="example-icon">🚀</div>
+                <div class="example-meta">
+                    <h2 class="example-title">Enhanced v2.0 Features Demo</h2>
+                    <p class="example-description">Comprehensive demonstration of all new v2.0 capabilities including AI integration, health monitoring, and advanced debugging.</p>
+                    <div class="example-stats">
+                        <span class="stat-badge">AI-Powered</span>
+                        <span class="stat-badge">23 Debug Tools</span>
+                        <span class="stat-badge">8 Services</span>
+                        <span class="stat-badge">Health Monitoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3>VS Code Extension Enhanced Workflow</h3>
+            <div class="code-block">
+                <pre><code class="language-bash"># 1. Open your project in VS Code
+code my-api-project
+
+# 2. Open Command Palette (Ctrl+Shift+P)
+# Run: "MCP Agentify: Interactive Setup"
+
+# 3. AI-powered project analysis
+# - Framework detection with confidence scores
+# - Security vulnerability assessment  
+# - Performance optimization recommendations
+# - AI-generated documentation insights
+
+# 4. Health monitoring dashboard
+# - Real-time Node.js runtime health
+# - VS Code environment status
+# - Workspace file permissions
+# - Network connectivity tests
+# - MCP server status monitoring
+
+# 5. Enhanced debugging tools
+# - 23 built-in debugging utilities
+# - Connection testing and validation
+# - Performance metrics tracking  
+# - Interactive CLI bridge</code></pre>
+            </div>
+
+            <h3>Enhanced Service Architecture</h3>
+            <div class="code-block">
+                <pre><code class="language-typescript">// Generated MCP server with enhanced v2.0 architecture
+import { 
+  Logger, 
+  ErrorHandler, 
+  ConfigurationManager,
+  HealthChecker,
+  TelemetryService,
+  LLMOrchestrator,
+  ProjectAnalyzer,
+  CodeGenerator 
+} from './services';
+
+// Modular service initialization
+const logger = new Logger();
+const errorHandler = new ErrorHandler(logger);
+const configManager = new ConfigurationManager(logger);
+const healthChecker = new HealthChecker(logger);
+const telemetry = new TelemetryService(logger);
+const llmOrchestrator = new LLMOrchestrator(logger, configManager);
+const projectAnalyzer = new ProjectAnalyzer(logger, llmOrchestrator);
+const codeGenerator = new CodeGenerator(logger, llmOrchestrator);
+
+// AI-powered project insights
+const analysis = await projectAnalyzer.analyzeProject({
+  path: './my-api',
+  includeAIInsights: true,
+  generateRecommendations: true
+});
+
+// Enhanced health monitoring
+const healthReport = await healthChecker.runCompleteHealthCheck({
+  onProgress: (message, increment) => console.log(`${message}: ${increment}%`)
+});
+
+// Privacy-focused telemetry (local only)
+telemetry.trackEvent('project_analyzed', {
+  framework: analysis.framework,
+  endpointCount: analysis.endpoints.length,
+  // No external transmission - all data stays local
+});</code></pre>
+            </div>
+
+            <h3>Generated Features</h3>
+            <ul>
+                <li><strong>AI Integration:</strong> OpenAI-powered code generation with fallback mechanisms</li>
+                <li><strong>Health Monitoring:</strong> Comprehensive system health checks across all components</li>
+                <li><strong>Privacy Protection:</strong> Local-only telemetry with no external data transmission</li>
+                <li><strong>Enhanced Debugging:</strong> 23 specialized debugging tools with VS Code DAP integration</li>
+                <li><strong>Modular Services:</strong> 8 specialized service classes for enterprise scalability</li>
+                <li><strong>Error Handling:</strong> User-friendly error management with contextual messaging</li>
+                <li><strong>Configuration Management:</strong> Comprehensive config validation and import/export</li>
+            </ul>
+
+            <h3>Generated Project Structure</h3>
+            <div class="folder-structure">
+                <div class="folder">generated-mcp-server/</div>
+                <div class="folder">├── src/</div>
+                <div class="file">│   ├── index.ts (Enhanced main entry point)</div>
+                <div class="file">│   ├── config.ts (Smart configuration)</div>
+                <div class="folder">│   ├── services/ (8 specialized services)</div>
+                <div class="file">│   │   ├── logger.ts</div>
+                <div class="file">│   │   ├── errorHandler.ts</div>
+                <div class="file">│   │   ├── healthChecker.ts</div>
+                <div class="file">│   │   ├── configurationManager.ts</div>
+                <div class="file">│   │   ├── telemetryService.ts</div>
+                <div class="file">│   │   ├── llmOrchestrator.ts</div>
+                <div class="file">│   │   ├── projectAnalyzer.ts</div>
+                <div class="file">│   │   └── codeGenerator.ts</div>
+                <div class="folder">│   ├── tools/ (23 debugging tools)</div>
+                <div class="file">│   │   ├── health-check.ts</div>
+                <div class="file">│   │   ├── connection-test.ts</div>
+                <div class="file">│   │   ├── performance-monitor.ts</div>
+                <div class="file">│   │   └── ... (20 more tools)</div>
+                <div class="folder">│   └── debug/ (Enhanced debugging)</div>
+                <div class="file">│       ├── debugAdapter.ts</div>
+                <div class="file">│       └── healthDashboard.ts</div>
+                <div class="folder">├── tests/ (Comprehensive test suite)</div>
+                <div class="folder">├── docs/ (AI-generated documentation)</div>
+                <div class="file">├── package.json (Enhanced dependencies)</div>
+                <div class="file">├── tsconfig.json (Optimized TypeScript config)</div>
+                <div class="file">└── README.md (Detailed setup guide)</div>
+            </div>
+
+            <a href="https://github.com/me-saurabhkohli/agentify/tree/main/examples/enhanced-v2-demo" class="demo-link" target="_blank">
+                🔗 View Enhanced v2.0 Demo Repository
+            </a>
+        </div>
 
         <div class="example-card">
             <div class="example-header">
